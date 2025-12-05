@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚔️ CAMBRIA NEXUS
 
-## Getting Started
+![Cambria Nexus Banner](/public/assets/art_banner.jpeg)
 
-First, run the development server:
+> **The Ultimate Utility Dashboard for Cambria.**  
+> *Crafted with a "Neon Glass" aesthetic, featuring immersive sound effects and fluid animations.*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌟 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📊 The Ledger & Simulators
+*   **The Ledger**: Advanced combat and staking calculator. Optimize your yields.
+*   **Paymaster Calculator**: Estimate daily tax pool earnings and syndicate dividends.
+*   **Airdrop Simulator**: Calculate your Season Rewards based on Charters, Lands, and Founders.
+*   **XP Calculator**: Track your daily energy and multipliers.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 📚 The Library
+Comprehensive guides with a premium visual presentation:
+*   **The Armory**: Visual build guides for specific combat styles (Burst, CC, Tank).
+*   **The Kitchen**: Recipe book for all consummables.
+*   **The World**: Maps, NPC locations, and Fishing Zone directories.
 
-## Learn More
+### 🎨 Visual & Audio Experience
+*   **Glassmorphism UI**: Deep dark themes with neon gold and purple accents.
+*   **Sound Integration**: Satisfying click, hover, and confirm sound effects.
+*   **Rave Mode**: Konami Code (`↑↑↓↓←→←→BA`) easter egg.
 
-To learn more about Next.js, take a look at the following resources:
+### 🌍 Localization
+*   Full support for **English** and **Russian** languages.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+*   **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+*   **Animations**: [Framer Motion](https://www.framer.com/motion/)
+*   **Icons**: [Lucide React](https://lucide.dev/)
+*   **Fonts**: `Pixelify Sans` & `Germania One`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚡ Getting Started
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/doublew300/Cambria-Nexus.git
+    cd Cambria-Nexus
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open locally**
+    Visit [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+*Built for the Cambria Community.* 🛡️
