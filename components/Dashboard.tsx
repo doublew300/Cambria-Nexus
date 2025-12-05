@@ -227,8 +227,18 @@ function DashboardContent() {
                 </AnimatePresence>
             </main>
 
-            <footer className="mt-12 text-center text-xs text-gray-600 relative z-10">
+            <footer className="mt-12 text-center text-xs text-gray-600 relative z-10 flex flex-col items-center gap-2 pb-8">
                 <p>{t('footer.built')}</p>
+                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 mt-2">
+                    <span className="opacity-50">Created by</span>
+                    <a href="https://x.com/doublew333" target="_blank" rel="noopener noreferrer" className="text-neon-gold hover:text-white transition-colors flex items-center gap-1 font-bold bg-neon-gold/10 px-2 py-1 rounded border border-neon-gold/20 hover:border-neon-gold/50">
+                        DoubleW300
+                    </a>
+                    <span className="hidden md:block opacity-30">|</span>
+                    <a href="https://t.me/doublew300" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 opacity-70 hover:opacity-100 hover:text-blue-400 transition-colors">
+                        <span className="text-blue-400/80">Telegram:</span> doublew300
+                    </a>
+                </div>
             </footer>
 
             {/* Modal */}
