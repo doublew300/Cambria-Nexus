@@ -27,7 +27,7 @@ const ETH_PER_1M_SILVER = 0.05125;
 const ORB_COST_ETH = 0.0012;
 const ENERGY_PER_ORB = 100000;
 const ETH_PRICE = 3000;
-const GUILD_TAX_RATE = 0.10;
+const GUILD_TAX_RATE = 0.10; // Default fallback
 
 import ReceiptModal from './ReceiptModal';
 
@@ -42,6 +42,7 @@ export default function TheLedger() {
 
     // Settings
     const [guildTax, setGuildTax] = useState(false);
+    const [guildTaxPercent, setGuildTaxPercent] = useState('10');
     const [soundEnabled, setSoundEnabled] = useState(true);
     const [ethPrice, setEthPrice] = useState('3000');
     const [globalSilver, setGlobalSilver] = useState('4000000000'); // Default 4B
@@ -69,6 +70,7 @@ export default function TheLedger() {
                 setTimeT4(data.timeT4 || '');
                 setTimeT5(data.timeT5 || '');
                 setGuildTax(data.guildTax || false);
+                setGuildTaxPercent(data.guildTaxPercent || '10');
                 setEthPrice(data.ethPrice || '3000');
                 setGlobalSilver(data.globalSilver || '4000000000');
                 setPrizePool(data.prizePool || '200');
@@ -89,12 +91,13 @@ export default function TheLedger() {
             timeT4,
             timeT5,
             guildTax,
+            guildTaxPercent,
             ethPrice,
             globalSilver,
             prizePool
         };
         localStorage.setItem('cambria_ledger_data', JSON.stringify(data));
-    }, [silverLooted, timeT2, timeT3, timeT4, timeT5, guildTax, ethPrice, globalSilver, prizePool, isLoaded]);
+    }, [silverLooted, timeT2, timeT3, timeT4, timeT5, guildTax, guildTaxPercent, ethPrice, globalSilver, prizePool, isLoaded]);
 
     useEffect(() => {
         soundManager.toggle(soundEnabled);
@@ -140,14 +143,16 @@ export default function TheLedger() {
         let netEth = grossEth - taxesEth - costEth;
 
         if (guildTax) {
-            const gTax = netEth * GUILD_TAX_RATE;
+            const val = parseFloat(guildTaxPercent);
+            const taxRate = isNaN(val) ? 0.10 : val / 100;
+            const gTax = netEth * taxRate;
             netEth -= gTax;
         }
 
         setNetProfit(netEth);
         setProfitUSD(netEth * currentEthPrice);
 
-    }, [silverLooted, timeT2, timeT3, timeT4, timeT5, guildTax, ethPrice, globalSilver, prizePool]);
+    }, [silverLooted, timeT2, timeT3, timeT4, timeT5, guildTax, guildTaxPercent, ethPrice, globalSilver, prizePool]);
 
     const totalMinutes = (parseFloat(timeT2) || 0) + (parseFloat(timeT3) || 0) + (parseFloat(timeT4) || 0) + (parseFloat(timeT5) || 0);
 
@@ -281,15 +286,35 @@ export default function TheLedger() {
                                 <Shield size={18} />
                             </div>
                             <div>
-                                <h4 className={`text-sm font-bold ${guildTax ? 'text-red-400' : 'text-gray-400'}`}>Guild Tax (10%)</h4>
-                                <p className="text-xs text-gray-600">Deduct guild fees from profit</p>
+                                <h4 className={`text-sm font-bold ${guildTax ? 'text-red-400' : 'text-gray-400'}`}>
+                                    Guild Tax
+                                    {guildTax && (
+                                        <span className="ml-2 text-xs bg-red-500/10 text-red-400 px-1 py-0.5 rounded border border-red-500/20">
+                                            {guildTaxPercent}%
+                                        </span>
+                                    )}
+                                </h4>
+                                <p className="text-xs text-gray-600">Deduct guild fees</p>
                             </div>
                         </div>
-                        <div className={`w-10 h-6 rounded-full p-1 transition-colors ${guildTax ? 'bg-red-500' : 'bg-gray-700'}`}>
-                            <motion.div
-                                className="w-4 h-4 bg-white rounded-full shadow-sm"
-                                animate={{ x: guildTax ? 16 : 0 }}
-                            />
+                        <div className="flex items-center gap-3">
+                            {guildTax && (
+                                <div className="relative w-16" onClick={(e) => e.stopPropagation()}>
+                                    <input
+                                        type="number"
+                                        value={guildTaxPercent}
+                                        onChange={(e) => handleInputChange(setGuildTaxPercent, e.target.value)}
+                                        className="w-full bg-black/60 border border-red-500/30 rounded px-2 py-1 text-right text-red-400 text-sm font-mono focus:border-red-500 focus:outline-none"
+                                    />
+                                    <span className="absolute right-6 top-1/2 -translate-y-1/2 text-red-500/50 text-[10px] pointer-events-none">%</span>
+                                </div>
+                            )}
+                            <div className={`w-10 h-6 rounded-full p-1 transition-colors ${guildTax ? 'bg-red-500' : 'bg-gray-700'}`}>
+                                <motion.div
+                                    className="w-4 h-4 bg-white rounded-full shadow-sm"
+                                    animate={{ x: guildTax ? 16 : 0 }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -426,7 +451,9 @@ export default function TheLedger() {
                     guildTax,
                     netProfit,
                     profitUSD,
-                    ethPrice
+                    ethPrice,
+                    guildTaxPercent,
+                    guildTaxAmount: guildTax ? (netProfit / (1 - (isNaN(parseFloat(guildTaxPercent)) ? 0.10 : parseFloat(guildTaxPercent) / 100)) * (isNaN(parseFloat(guildTaxPercent)) ? 0.10 : parseFloat(guildTaxPercent) / 100)) : 0
                 }}
             />
 
@@ -443,7 +470,11 @@ export default function TheLedger() {
                 </div>
 
                 <BreakEvenChart silverPerHour={parseFloat(silverLooted) / (totalMinutes / 60) || 0} />
-                <TaxPieChart silverAmount={parseFloat(silverLooted) || 0} orbCostEth={orbCostEth} />
+                <TaxPieChart
+                    silverAmount={parseFloat(silverLooted) || 0}
+                    orbCostEth={orbCostEth}
+                    guildTaxAmount={guildTax ? ((grossProfit * 0.85 - orbCostEth) * (isNaN(parseFloat(guildTaxPercent)) ? 0.10 : parseFloat(guildTaxPercent) / 100)) : 0}
+                />
                 <EnergyXPChart />
             </motion.div>
         </div >

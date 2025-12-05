@@ -20,6 +20,8 @@ interface ReceiptModalProps {
         netProfit: number;
         profitUSD: number;
         ethPrice: string;
+        guildTaxPercent?: string;
+        guildTaxAmount?: number;
     };
 }
 
@@ -196,8 +198,8 @@ export default function ReceiptModal({ isOpen, onClose, data }: ReceiptModalProp
                                 </div>
                                 {data.guildTax && (
                                     <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f87171' }}>
-                                        <span>GUILD TAX (10%)</span>
-                                        <span>-{(data.netProfit * 0.1).toFixed(4)} ETH</span>
+                                        <span>GUILD TAX ({data.guildTaxPercent}%)</span>
+                                        <span>-{data.guildTaxAmount?.toFixed(4)} ETH</span>
                                     </div>
                                 )}
                             </div>

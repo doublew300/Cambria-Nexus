@@ -89,22 +89,24 @@ export function BreakEvenChart({ silverPerHour }: BreakEvenProps) {
 interface TaxPieProps {
     silverAmount: number;
     orbCostEth?: number; // Cost in ETH
+    guildTaxAmount?: number;
 }
 
-export function TaxPieChart({ silverAmount, orbCostEth = 0 }: TaxPieProps) {
+export function TaxPieChart({ silverAmount, orbCostEth = 0, guildTaxAmount = 0 }: TaxPieProps) {
     const ETH_PER_SILVER = 0.00000005125;
     const grossValueEth = silverAmount * ETH_PER_SILVER;
 
     const paymasterTaxEth = grossValueEth * 0.13;
     const devTaxEth = grossValueEth * 0.02;
 
-    let profitEth = grossValueEth - paymasterTaxEth - devTaxEth - orbCostEth;
+    let profitEth = grossValueEth - paymasterTaxEth - devTaxEth - orbCostEth - guildTaxAmount;
     if (profitEth < 0) profitEth = 0;
 
     const data = [
         { name: 'Paymaster (13%)', value: paymasterTaxEth, color: '#ef4444' },
         { name: 'Dev Tax (2%)', value: devTaxEth, color: '#f97316' },
         { name: 'Orb Cost', value: orbCostEth, color: '#3b82f6' },
+        ...(guildTaxAmount > 0 ? [{ name: 'Guild Tax', value: guildTaxAmount, color: '#b91c1c' }] : []),
         { name: 'Net Profit', value: profitEth, color: '#22c55e' },
     ];
 
