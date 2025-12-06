@@ -217,7 +217,7 @@ export default function AirdropSim() {
                                 className="flex-1 bg-[#0a0a0a] border border-gray-800 p-4 text-white focus:border-neon-gold focus:bg-neon-gold/5 focus:outline-none rounded-xl appearance-none cursor-pointer hover:border-gray-600 transition-all"
                             >
                                 {Object.keys(FOUNDER_BONUSES).map((count) => (
-                                    <option key={count} value={count}>{count} {t('item.founders')} (+{FOUNDER_BONUSES[Number(count) as keyof typeof FOUNDER_BONUSES]}x)</option>
+                                    <option key={count} value={count} className="text-black bg-white">{count} {t('item.founders')} (+{FOUNDER_BONUSES[Number(count) as keyof typeof FOUNDER_BONUSES]}x)</option>
                                 ))}
                             </select>
                         </div>

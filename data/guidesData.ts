@@ -41,10 +41,21 @@ export type NpcHub = {
   npcs: { name: string; function: string }[];
 };
 
+export type FishInfo = {
+  raw: string;
+  level: number;
+  location: string;
+  cooked: string;
+  cookLevel: number;
+  heals: number;
+  req: string;
+};
+
 export type DataPackage = {
   builds: Build[];
   recipes: Recipe[];
   fishing: FishingLoc[];
+  fishCooking: FishInfo[]; // New field
   boosts: { name: string; effect: string }[];
   marks: { name: string; category: string; type: string; effect: string }[];
   npcs: NpcHub[];
@@ -189,21 +200,23 @@ const DATA_EN: DataPackage = {
     }
   ],
   recipes: [
-    { name: "Cod Chunks", buff: "Boosts Cooking Lvl +15 & XP +10% for 5 mins", req: "Cooking Lvl 10", ingredients: "5x Raw Trout", icon: "🍖" },
-    { name: "Kings Lobster Delight", buff: "Boosts Agility Lvl +15 & XP +10% for 5 mins", req: "Cooking Lvl 50", ingredients: "3x Raw Lobster, 1x Raw Kelp", icon: "🦞" },
-    { name: "Hearty Stew", buff: "Increases Mining, Woodcutting, Fishing XP by 20% for 3 mins", req: "Cooking Lvl 55", ingredients: "5x Raw Carps, 1x Raw Kelp", icon: "🍲" },
-    { name: "Anchovy Soup", buff: "Boosts Fishing Lvl +15 & XP +10% for 5 mins", req: "Cooking Lvl 65", ingredients: "5x Raw Trout, 5x Raw Cod", icon: "🥣" },
-    { name: "Rabbit Pie", buff: "Boosts Smithing Lvl +5 & XP +10% for 5 mins", req: "Cooking Lvl 65", ingredients: "5x Raw Trout, 1x Raw Carp", icon: "🥧" },
-    { name: "Cambrian Pie", buff: "INCREASES ALL XP GAINED BY 10% for 1.5 mins", req: "Cooking Lvl 70", ingredients: "5x Raw Cod, 5x Oak Logs, 5x Cow Meat, 1x Raw Eel", icon: "🥧" },
-    { name: "Honey Cake", buff: "Boosts Engineering Lvl +15 & XP +10% for 5 mins", req: "Cooking Lvl 80", ingredients: "5x Raw Kelp, 5x Boar Meat, 1x Raw Eel", icon: "🍰" },
-    { name: "Enhanced Fishing Rod", buff: "Allows catching T3+ Fish (Lobster/Eel)", req: "Crafting Lvl 65", ingredients: "10x Oak Logs, 1x Thread, 1x Iron Bar", icon: "🎣" }
+    { name: "Cod Chunks", buff: "+15 Cooking Lvl & +10% XP (5 min)", req: "Cooking Lvl 10", ingredients: "5x Raw Trout", icon: "🍖" },
+    { name: "Kings Lobster Delight", buff: "+15 Agility Lvl & +10% XP (5 min)", req: "Cooking Lvl 50", ingredients: "3x Raw Lobster, 1x Raw Kelp", icon: "🦞" },
+    { name: "Hearty Stew", buff: "20% Mining, Woodcutting, Fishing XP (3 min)", req: "Cooking Lvl 55", ingredients: "5x Raw Carps, 1x Raw Kelp", icon: "🍲" },
+    { name: "Anchovy Soup", buff: "+15 Fishing Lvl & +10% XP (5 min)", req: "Cooking Lvl 65", ingredients: "5x Raw Trout, 5x Raw Cod", icon: "🥣" },
+    { name: "Rabbit Pie", buff: "+5 Smithing Lvl & +10% XP (5 min)", req: "Cooking Lvl 65", ingredients: "5x Raw Trout, 1x Raw Carp", icon: "🥧" },
+    { name: "Cambrian Pie", buff: "🏆 +10% ALL XP GAINED (1.5 min)", req: "Cooking Lvl 70", ingredients: "5x Raw Cod, 5x Cow Meat, 5x Oak Logs, 1x Raw Eel", icon: "🥧" }
   ],
-  fishing: [
-    { zone: "Capital (Safe Zone)", fish: ["Trout", "Cod", "Kelp"], req: "None", note: "No bait needed." },
-    { zone: "South of Capital", fish: ["Carp"], req: "Lvl 40+", note: "No bait needed." },
-    { zone: "New Mortis / Swamp", fish: ["Lobster", "Eels"], req: "Lvl 60+", note: "Needs Bait + Enhanced Rod." },
-    { zone: "Tunnels / Caves", fish: ["Rockfish"], req: "Endgame", note: "Needs Rock Dust + Kill Cave Golems." }
+  fishCooking: [
+    { raw: "Raw Trout", level: 1, location: "Safe Zone Around City", cooked: "Grilled Trout", cookLevel: 1, heals: 30, req: "-" },
+    { raw: "Raw Cod", level: 15, location: "Safe Zone Around City", cooked: "Grilled Cod", cookLevel: 30, heals: 50, req: "-" },
+    { raw: "Raw Carp", level: 30, location: "T3 Beach / Green Ponds", cooked: "Grilled Carp", cookLevel: 60, heals: 140, req: "Enhanced Fishing Rod + Bait (Green Pond)" },
+    { raw: "Raw Lobster", level: 50, location: "T3 Areas Green Ponds", cooked: "Grilled Lobster", cookLevel: 70, heals: 170, req: "Enhanced Rod + Bait" },
+    { raw: "Raw Eel", level: 70, location: "T4 Caves", cooked: "Grilled Eel", cookLevel: 80, heals: 210, req: "Enhanced Rod + Rock Dust" },
+    { raw: "Raw Rock Fish", level: 80, location: "T4 Caves", cooked: "Grilled Rock Fish", cookLevel: 90, heals: 250, req: "Enhanced Rod + Rock Dust" }
   ],
+  // fishing array removed as superseded by fishCooking
+
   boosts: [
     { name: "Strong Ale", effect: "Reduces stress by 10/30/50/200" },
     { name: "Lucky Charm", effect: "Increases current reward multiplier by 5%/15%/35%/100%" },
@@ -432,21 +445,22 @@ const DATA_RU: DataPackage = {
     }
   ],
   recipes: [
-    { name: "Cod Chunks", buff: "Буст Кулинарии +15 & XP +10% на 5 мин", req: "Кулинария 10", ingredients: "5x Raw Trout", icon: "🍖" },
-    { name: "Kings Lobster Delight", buff: "Буст Ловкости +15 & XP +10% на 5 мин", req: "Кулинария 50", ingredients: "3x Raw Lobster, 1x Raw Kelp", icon: "🦞" },
-    { name: "Hearty Stew", buff: "Увелич. Майнинг, Вудк. и Рыбалку XP на 20% на 3 мин", req: "Кулинария 55", ingredients: "5x Raw Carps, 1x Raw Kelp", icon: "🍲" },
-    { name: "Anchovy Soup", buff: "Буст Рыбалки +15 & XP +10% на 5 мин", req: "Кулинария 65", ingredients: "5x Raw Trout, 5x Raw Cod", icon: "🥣" },
-    { name: "Rabbit Pie", buff: "Буст Смитинга +5 & XP +10% на 5 мин", req: "Кулинария 65", ingredients: "5x Raw Trout, 1x Raw Carp", icon: "🥧" },
-    { name: "Cambrian Pie", buff: "УВЕЛИЧИВАЕТ ВЕСЬ ПОЛУЧАЕМЫЙ ОПЫТ НА 10% (1.5 мин)", req: "Кулинария 70", ingredients: "5x Raw Cod, 5x Oak Logs, 5x Cow Meat, 1x Raw Eel", icon: "🥧" },
-    { name: "Honey Cake", buff: "Буст Инженерии +15 & XP +10% на 5 мин", req: "Кулинария 80", ingredients: "5x Raw Kelp, 5x Boar Meat, 1x Raw Eel", icon: "🍰" },
-    { name: "Enhanced Fishing Rod", buff: "Позволяет ловить рыбу Т3+ (Лобстер/Угорь)", req: "Крафт 65", ingredients: "10x Oak Logs, 1x Thread, 1x Iron Bar", icon: "🎣" }
+    { name: "Cod Chunks", buff: "+15 Cooking Lvl & +10% XP (5 min)", req: "Кулинария 10", ingredients: "5x Raw Trout", icon: "🍖" },
+    { name: "Kings Lobster Delight", buff: "+15 Agility Lvl & +10% XP (5 min)", req: "Кулинария 50", ingredients: "3x Raw Lobster, 1x Raw Kelp", icon: "🦞" },
+    { name: "Hearty Stew", buff: "20% Майнинг, Вудк. и Рыбалка XP (3 min)", req: "Кулинария 55", ingredients: "5x Raw Carps, 1x Raw Kelp", icon: "🍲" },
+    { name: "Anchovy Soup", buff: "+15 Fishing Lvl & +10% XP (5 min)", req: "Кулинария 65", ingredients: "5x Raw Trout, 5x Raw Cod", icon: "🥣" },
+    { name: "Rabbit Pie", buff: "+5 Smithing Lvl & +10% XP (5 min)", req: "Кулинария 65", ingredients: "5x Raw Trout, 1x Raw Carp", icon: "🥧" },
+    { name: "Cambrian Pie", buff: "🏆 +10% КО ВСЕМУ XP (1.5 min)", req: "Кулинария 70", ingredients: "5x Raw Cod, 5x Cow Meat, 5x Oak Logs, 1x Raw Eel", icon: "🥧" }
   ],
-  fishing: [
-    { zone: "Capital (Safe Zone)", fish: ["Trout", "Cod", "Kelp"], req: "Нет", note: "Наживка не нужна." },
-    { zone: "South of Capital", fish: ["Carp"], req: "Ур. 40+", note: "Наживка не нужна." },
-    { zone: "New Mortis / Swamp", fish: ["Lobster", "Eels"], req: "Ур. 60+", note: "Нужна Наживка + Enhanced Rod." },
-    { zone: "Tunnels / Caves", fish: ["Rockfish"], req: "Ендгейм", note: "Rock Dust + Убить Големов." }
+  fishCooking: [
+    { raw: "Raw Trout", level: 1, location: "Safe Zone Around City", cooked: "Grilled Trout", cookLevel: 1, heals: 30, req: "-" },
+    { raw: "Raw Cod", level: 15, location: "Safe Zone Around City", cooked: "Grilled Cod", cookLevel: 30, heals: 50, req: "-" },
+    { raw: "Raw Carp", level: 30, location: "T3 Beach / Green Ponds", cooked: "Grilled Carp", cookLevel: 60, heals: 140, req: "Enhanced Fishing Rod + Bait (Green Pond)" },
+    { raw: "Raw Lobster", level: 50, location: "T3 Areas Green Ponds", cooked: "Grilled Lobster", cookLevel: 70, heals: 170, req: "Enhanced Rod + Bait" },
+    { raw: "Raw Eel", level: 70, location: "T4 Caves", cooked: "Grilled Eel", cookLevel: 80, heals: 210, req: "Enhanced Rod + Rock Dust" },
+    { raw: "Raw Rock Fish", level: 80, location: "T4 Caves", cooked: "Grilled Rock Fish", cookLevel: 90, heals: 250, req: "Enhanced Rod + Rock Dust" }
   ],
+  // fishing array removed
   boosts: [
     { name: "Strong Ale", effect: "Снижает стресс на 10/30/50/200" },
     { name: "Lucky Charm", effect: "Увеличивает множитель наград на 5%/15%/35%/100%" },
@@ -544,7 +558,7 @@ export const getGuideData = (lang: 'en' | 'ru'): DataPackage => {
 // Backwards compatibility
 export const COMBAT_BUILDS = DATA_EN.builds;
 export const RECIPES = DATA_EN.recipes;
-export const FISHING_LOCATIONS = DATA_EN.fishing;
+export const FISH_COOKING = DATA_EN.fishCooking;
 export const BOOSTS = DATA_EN.boosts;
 export const NPC_DIRECTORY = DATA_EN.npcs;
 export const MARKS = DATA_EN.marks;

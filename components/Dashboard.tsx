@@ -10,6 +10,10 @@ import GuildManager from './GuildManager';
 import XPCalculator from './XPCalculator';
 import ReferralCode from './ReferralCode';
 import TheLibrary from './TheLibrary';
+import TiltCard from './ui/TiltCard';
+import GlitchTransition from './ui/GlitchTransition';
+import { MagicBorder } from './ui/GlowBorder';
+import ParticleBackground from './ui/ParticleBackground';
 import { Calculator, Skull, Gem, Coins, BookOpen, X, User } from 'lucide-react';
 import { Guide } from './Guides';
 import { soundManager } from '../utils/sound';
@@ -58,6 +62,7 @@ function DashboardContent() {
 
     return (
         <div className={`min-h-screen p-4 md:p-8 relative overflow-hidden font-pixel text-white selection:bg-neon-purple selection:text-white ${raveMode ? 'rave-mode' : ''}`}>
+            <ParticleBackground />
             {/* Background Effects */}
             <div className="absolute inset-0 -z-20">
                 <img src="/assets/bg_main.png" alt="Background" className="w-full h-full object-cover opacity-60" />
@@ -78,7 +83,7 @@ function DashboardContent() {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
+                    transition={{ duration: 0.4 }}
                     onClick={() => { setActiveTab('home'); soundManager.playClick(); }}
                     className="flex justify-center mb-4 cursor-pointer hover:scale-105 transition-transform"
                 >
@@ -115,6 +120,8 @@ function DashboardContent() {
                     ))}
                 </nav>
 
+
+
                 <AnimatePresence mode="wait">
                     {activeTab === 'home' ? (
                         <motion.div
@@ -122,107 +129,115 @@ function DashboardContent() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 1.05 }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000"
                         >
                             {/* Ledger Card */}
-                            <div
+                            <TiltCard
                                 onClick={() => { setActiveTab('ledger'); soundManager.playClick(); }}
-                                className="group relative h-64 bg-black/60 border border-cambria-purple/50 rounded-xl overflow-hidden cursor-pointer hover:border-neon-gold transition-all hover:shadow-[0_0_30px_rgba(176,38,255,0.3)]"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
-                                <img src="/assets/art_banner.jpeg" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" />
-                                <div className="absolute bottom-0 left-0 p-6 z-20">
-                                    <Calculator className="text-neon-gold mb-2" size={32} />
-                                    <h3 className="text-2xl font-bold font-germania text-white">THE LEDGER</h3>
-                                    <p className="text-sm text-gray-400 mt-1">Combat & Staking Calculator</p>
-                                </div>
-                            </div>
+                                <MagicBorder className="h-64 border border-cambria-purple/50 rounded-xl hover:border-neon-gold hover:shadow-[0_0_30px_rgba(176,38,255,0.3)] transition-all">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 rounded-xl" />
+                                    <img src="/assets/art_banner.jpeg" className="absolute inset-0 w-full h-full object-cover opacity-50 hover:scale-110 transition-transform duration-700 rounded-xl" />
+                                    <div className="absolute bottom-0 left-0 p-6 z-20 transform translate-z-20">
+                                        <Calculator className="text-neon-gold mb-2" size={32} />
+                                        <h3 className="text-2xl font-bold font-germania text-white">THE LEDGER</h3>
+                                        <p className="text-sm text-gray-400 mt-1">Combat & Staking Calculator</p>
+                                    </div>
+                                </MagicBorder>
+                            </TiltCard>
 
                             {/* Library Card */}
-                            <div
+                            <TiltCard
                                 onClick={() => { setActiveTab('library'); soundManager.playClick(); }}
-                                className="group relative h-64 bg-black/60 border border-cambria-purple/50 rounded-xl overflow-hidden cursor-pointer hover:border-neon-gold transition-all hover:shadow-[0_0_30px_rgba(176,38,255,0.3)]"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
-                                <div className="absolute inset-0 bg-[url('/assets/bg_main.png')] bg-cover opacity-30 group-hover:scale-110 transition-transform duration-700" />
-                                <div className="absolute bottom-0 left-0 p-6 z-20">
-                                    <BookOpen className="text-cyan-400 mb-2" size={32} />
-                                    <h3 className="text-2xl font-bold font-germania text-white">THE LIBRARY</h3>
-                                    <p className="text-sm text-gray-400 mt-1">Game Guides & Wiki</p>
-                                </div>
-                            </div>
+                                <MagicBorder className="h-64 border border-cambria-purple/50 rounded-xl hover:border-neon-gold hover:shadow-[0_0_30px_rgba(176,38,255,0.3)] transition-all">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 rounded-xl" />
+                                    <div className="absolute inset-0 bg-[url('/assets/bg_main.png')] bg-cover opacity-30 hover:scale-110 transition-transform duration-700 rounded-xl" />
+                                    <div className="absolute bottom-0 left-0 p-6 z-20 transform translate-z-20">
+                                        <BookOpen className="text-cyan-400 mb-2" size={32} />
+                                        <h3 className="text-2xl font-bold font-germania text-white">THE LIBRARY</h3>
+                                        <p className="text-sm text-gray-400 mt-1">Game Guides & Wiki</p>
+                                    </div>
+                                </MagicBorder>
+                            </TiltCard>
 
                             {/* Economy Card */}
-                            <div
+                            <TiltCard
                                 onClick={() => { setActiveTab('economy'); soundManager.playClick(); }}
-                                className="group relative h-64 bg-black/60 border border-cambria-purple/50 rounded-xl overflow-hidden cursor-pointer hover:border-neon-gold transition-all hover:shadow-[0_0_30px_rgba(176,38,255,0.3)]"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
-                                <div className="absolute inset-0 bg-green-900/20 group-hover:bg-green-900/30 transition-colors" />
-                                <img src="/assets/gold_anim.gif" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" />
-                                <div className="absolute bottom-0 left-0 p-6 z-20">
-                                    <Coins className="text-green-400 mb-2" size={32} />
-                                    <h3 className="text-2xl font-bold font-germania text-white">ECONOMY</h3>
-                                    <p className="text-sm text-gray-400 mt-1">Paymaster & Guild Tools</p>
-                                </div>
-                            </div>
+                                <MagicBorder className="h-64 border border-cambria-purple/50 rounded-xl hover:border-neon-gold hover:shadow-[0_0_30px_rgba(176,38,255,0.3)] transition-all">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 rounded-xl" />
+                                    <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/30 transition-colors rounded-xl" />
+                                    <img src="/assets/gold_anim.gif" className="absolute inset-0 w-full h-full object-cover opacity-40 hover:scale-110 transition-transform duration-700 rounded-xl" />
+                                    <div className="absolute bottom-0 left-0 p-6 z-20 transform translate-z-20">
+                                        <Coins className="text-green-400 mb-2" size={32} />
+                                        <h3 className="text-2xl font-bold font-germania text-white">ECONOMY</h3>
+                                        <p className="text-sm text-gray-400 mt-1">Paymaster & Guild Tools</p>
+                                    </div>
+                                </MagicBorder>
+                            </TiltCard>
 
                             {/* Airdrop Card (Wide) */}
+                            {/* Airdrop Card (Wide - Static) */}
                             <div
                                 onClick={() => { setActiveTab('airdrop'); soundManager.playClick(); }}
-                                className="group relative h-40 md:col-span-2 lg:col-span-3 bg-black/60 border border-cambria-purple/50 rounded-xl overflow-hidden cursor-pointer hover:border-neon-gold transition-all hover:shadow-[0_0_30px_rgba(176,38,255,0.3)]"
+                                className="md:col-span-2 lg:col-span-3 cursor-pointer group"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10" />
-                                <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-30 transition-opacity">
-                                    <Gem size={120} />
-                                </div>
-                                <div className="absolute inset-0 flex items-center justify-between p-8 z-20">
-                                    <div>
-                                        <h3 className="text-2xl font-bold font-germania text-white">AIRDROP SIMULATOR</h3>
-                                        <p className="text-sm text-gray-400">Calculate your Season Rewards</p>
+                                <MagicBorder className="h-40 border border-cambria-purple/50 rounded-xl hover:border-neon-gold hover:shadow-[0_0_30px_rgba(176,38,255,0.3)] transition-all">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10 rounded-xl" />
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-20 hover:opacity-30 transition-opacity transform translate-z-10">
+                                        <Gem size={120} />
                                     </div>
-                                    <div className="px-4 py-2 bg-neon-purple/20 border border-neon-purple rounded text-neon-purple group-hover:bg-neon-purple group-hover:text-white transition-colors">
-                                        LAUNCH
+                                    <div className="absolute inset-0 flex items-center justify-between p-8 z-20 transform translate-z-20">
+                                        <div>
+                                            <h3 className="text-2xl font-bold font-germania text-white">AIRDROP SIMULATOR</h3>
+                                            <p className="text-sm text-gray-400">Calculate your Season Rewards</p>
+                                        </div>
+                                        <div className="px-4 py-2 bg-neon-purple/20 border border-neon-purple rounded text-neon-purple hover:bg-neon-purple hover:text-white transition-colors shadow-[0_0_15px_rgba(176,38,255,0.3)]">
+                                            LAUNCH
+                                        </div>
                                     </div>
-                                </div>
+                                </MagicBorder>
                             </div>
 
                         </motion.div>
                     ) : (
                         /* Content Area */
-                        <motion.div
-                            className="relative min-h-[400px] border-2 border-cambria-purple/60 bg-black/60 p-6 shadow-[0_0_60px_rgba(176,38,255,0.2)] backdrop-blur-md rounded-xl overflow-hidden"
-                        >
-                            {/* Decorative Corner Accents */}
-                            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-tl-xl" />
-                            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-tr-xl" />
-                            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-bl-xl" />
-                            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-br-xl" />
+                        <GlitchTransition activeKey={activeTab}>
+                            <motion.div
+                                className="relative min-h-[400px] border-2 border-cambria-purple/60 bg-black/60 p-6 shadow-[0_0_60px_rgba(176,38,255,0.2)] backdrop-blur-md rounded-xl overflow-hidden"
+                            >
+                                {/* Decorative Corner Accents */}
+                                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-tl-xl" />
+                                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-tr-xl" />
+                                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-bl-xl" />
+                                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-gold z-20 shadow-[0_0_10px_rgba(255,215,0,0.8)] rounded-br-xl" />
 
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={activeTab}
-                                    initial={{ opacity: 0, x: 10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -10 }}
-                                    transition={{ duration: 0.15, ease: "easeInOut" }}
-                                >
-                                    {activeTab === 'ledger' && <TheLedger />}
-                                    {activeTab === 'dungeon' && <DungeonMaster />}
-                                    {activeTab === 'airdrop' && <AirdropSim />}
-                                    {activeTab === 'economy' && (
-                                        <div className="space-y-12">
-                                            <PaymasterCalculator />
-                                            <div className="w-full h-px bg-gradient-to-r from-transparent via-cambria-purple to-transparent" />
-                                            <GuildManager />
-                                            <div className="w-full h-px bg-gradient-to-r from-transparent via-cambria-purple to-transparent" />
-                                            <XPCalculator />
-                                        </div>
-                                    )}
-                                    {activeTab === 'library' && <TheLibrary onSelectGuide={setSelectedGuide} />}
-                                </motion.div>
-                            </AnimatePresence>
-                        </motion.div>
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeTab}
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -10 }}
+                                        transition={{ duration: 0.15, ease: "easeInOut" }}
+                                    >
+                                        {activeTab === 'ledger' && <TheLedger />}
+                                        {activeTab === 'dungeon' && <DungeonMaster />}
+                                        {activeTab === 'airdrop' && <AirdropSim />}
+                                        {activeTab === 'economy' && (
+                                            <div className="space-y-12">
+                                                <PaymasterCalculator />
+                                                <div className="w-full h-px bg-gradient-to-r from-transparent via-cambria-purple to-transparent" />
+                                                <GuildManager />
+                                                <div className="w-full h-px bg-gradient-to-r from-transparent via-cambria-purple to-transparent" />
+                                                <XPCalculator />
+                                            </div>
+                                        )}
+                                        {activeTab === 'library' && <TheLibrary onSelectGuide={setSelectedGuide} />}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </motion.div>
+                        </GlitchTransition>
                     )}
                 </AnimatePresence>
             </main>

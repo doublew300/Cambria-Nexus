@@ -509,40 +509,190 @@ export const GUIDES: Guide[] = [
     },
     {
         id: 11,
-        title: "Inventory Checklist",
-        description: "What to bring for every activity. Never forget your teleport again.",
+        title: "Must Have Consumables",
+        description: "Essential items you cannot survive without. Source: Sousin & Crafting.",
         type: "strategy",
         content: (
             <div className="space-y-6 text-gray-300">
+                <p>Ensure you always carry these essentials to survive in Cambria.</p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* 1. COCA LEAVES */}
+                    <div className="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-green-500/50 transition-colors">
+                        <h4 className="text-green-400 font-bold mb-2 flex items-center gap-2">
+                            Coca Leaves
+                        </h4>
+                        <p className="text-xs text-gray-400 mb-2">Source: <span className="text-white">Sousin (NPC)</span></p>
+                        <ul className="list-disc list-inside text-sm text-gray-300 space-y-1">
+                            <li>Significantly boosts <span className="text-neon-gold">Movement Speed</span> temporarily.</li>
+                            <li><span className="text-red-400">Cost:</span> Drains HP while active.</li>
+                            <li className="text-xs italic text-gray-500">Essential for chasing or escaping.</li>
+                        </ul>
+                    </div>
+
+                    {/* 2. CLEANSING BALM */}
+                    <div className="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-purple-500/50 transition-colors">
+                        <h4 className="text-purple-400 font-bold mb-2 flex items-center gap-2">
+                            Cleansing Balm
+                        </h4>
+                        <p className="text-xs text-gray-400 mb-2">Source: <span className="text-white">Sousin (NPC)</span></p>
+                        <div className="text-sm text-gray-300 space-y-1">
+                            <p className="font-bold text-white">INSTANTLY does one of the following:</p>
+                            <ul className="list-disc list-inside pl-2">
+                                <li>Clears all Crowd Control (CC) effects.</li>
+                                <li>Grants <span className="text-neon-gold">5 seconds</span> of CC Immunity.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* 3. TELEPORT SCROLLS */}
+                    <div className="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-yellow-500/50 transition-colors">
+                        <h4 className="text-yellow-400 font-bold mb-2 flex items-center gap-2">
+                            Teleport Scrolls
+                        </h4>
+                        <p className="text-xs text-gray-400 mb-2">Source: <span className="text-white">Sousin (NPC)</span></p>
+                        <ol className="list-decimal list-inside text-sm text-gray-300 space-y-1">
+                            <li>Create a <span className="text-neon-purple">Portal</span> at your farming spot.</li>
+                            <li>Use scroll to return instantly to City.</li>
+                            <li>Use the Portal in City to teleport <strong>back</strong> to your spot.</li>
+                        </ol>
+                    </div>
+
+                    {/* 4. WEAPON POISON */}
+                    <div className="bg-white/5 p-4 rounded-lg border border-white/10 hover:border-green-600/50 transition-colors">
+                        <h4 className="text-green-600 font-bold mb-2 flex items-center gap-2">
+                            Weapon Poison
+                        </h4>
+                        <p className="text-xs text-gray-400 mb-2">Source: <span className="text-white">Swamp Mobs / Poison Table</span></p>
+                        <ul className="list-disc list-inside text-sm text-gray-300 space-y-1">
+                            <li>Craft at <span className="text-green-400">Poison Crafting Table</span> (Swamp).</li>
+                            <li>Has <span className="text-white">3 Tiers</span> of potency.</li>
+                            <li><span className="text-red-400 font-bold uppercase">Must Have:</span> Always apply to Weapon/Arrows.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        )
+    },
+    {
+        id: 12,
+        title: "Fishing & Cooking Masterclass",
+        description: "Complete database of fish locations, healing values, and special recipes.",
+        type: "guide",
+        content: (
+            <div className="space-y-8 text-gray-300">
+
+                {/* Section 1: Fish & Cook */}
                 <section>
-                    <h3 className="text-xl text-neon-gold font-bold mb-3">General Adventure</h3>
-                    <div className="bg-black/40 p-4 rounded border border-gray-800 grid grid-cols-2 gap-2 text-sm">
-                        <span>• 1x Teleport Tablet (Home)</span>
-                        <span>• 10x Food (High Healing)</span>
-                        <span>• 1x Stamina Potion</span>
-                        <span>• 500x Coins (For unexpected travels)</span>
+                    <h3 className="text-xl text-blue-400 font-bold mb-4 flex items-center gap-2">
+                        🐟 Fish & Cook
+                    </h3>
+                    <div className="overflow-x-auto border border-gray-800 rounded-lg">
+                        <table className="w-full text-sm text-left">
+                            <thead className="text-xs text-gray-500 uppercase bg-black/60">
+                                <tr>
+                                    <th className="px-4 py-2">Fish (Lvl)</th>
+                                    <th className="px-4 py-2">Location</th>
+                                    <th className="px-4 py-2">Cooked (Lvl)</th>
+                                    <th className="px-4 py-2">Heals</th>
+                                    <th className="px-4 py-2">Requirements</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-800 bg-black/40">
+                                <tr className="hover:bg-white/5">
+                                    <td className="px-4 py-2"><span className="text-white font-bold">Raw Trout</span> <span className="text-xs text-gray-500">(Lvl 1)</span></td>
+                                    <td className="px-4 py-2">Safe Zone</td>
+                                    <td className="px-4 py-2">Grilled Trout <span className="text-xs text-gray-500">(Lvl 1)</span></td>
+                                    <td className="px-4 py-2 text-green-400">30 HP</td>
+                                    <td className="px-4 py-2 text-gray-500">—</td>
+                                </tr>
+                                <tr className="hover:bg-white/5">
+                                    <td className="px-4 py-2"><span className="text-white font-bold">Raw Cod</span> <span className="text-xs text-gray-500">(Lvl 15)</span></td>
+                                    <td className="px-4 py-2">Safe Zone</td>
+                                    <td className="px-4 py-2">Grilled Cod <span className="text-xs text-gray-500">(Lvl 30)</span></td>
+                                    <td className="px-4 py-2 text-green-400">50 HP</td>
+                                    <td className="px-4 py-2 text-gray-500">—</td>
+                                </tr>
+                                <tr className="hover:bg-white/5">
+                                    <td className="px-4 py-2"><span className="text-blue-300 font-bold">Raw Carp</span> <span className="text-xs text-gray-500">(Lvl 30)</span></td>
+                                    <td className="px-4 py-2">T3 Beach / Green Ponds</td>
+                                    <td className="px-4 py-2">Grilled Carp <span className="text-xs text-gray-500">(Lvl 60)</span></td>
+                                    <td className="px-4 py-2 text-green-400">140 HP</td>
+                                    <td className="px-4 py-2 text-xs">Enhanced Rod + Bait</td>
+                                </tr>
+                                <tr className="hover:bg-white/5">
+                                    <td className="px-4 py-2"><span className="text-blue-300 font-bold">Raw Lobster</span> <span className="text-xs text-gray-500">(Lvl 50)</span></td>
+                                    <td className="px-4 py-2">T3 Green Ponds</td>
+                                    <td className="px-4 py-2">Grilled Lobster <span className="text-xs text-gray-500">(Lvl 70)</span></td>
+                                    <td className="px-4 py-2 text-green-400">170 HP</td>
+                                    <td className="px-4 py-2 text-xs">Enhanced Rod + Bait</td>
+                                </tr>
+                                <tr className="hover:bg-white/5">
+                                    <td className="px-4 py-2"><span className="text-purple-400 font-bold">Raw Eel</span> <span className="text-xs text-gray-500">(Lvl 70)</span></td>
+                                    <td className="px-4 py-2">T4 Caves</td>
+                                    <td className="px-4 py-2">Grilled Eel <span className="text-xs text-gray-500">(Lvl 80)</span></td>
+                                    <td className="px-4 py-2 text-green-400">210 HP</td>
+                                    <td className="px-4 py-2 text-xs">Enhanced Rod + Rock Dust</td>
+                                </tr>
+                                <tr className="hover:bg-white/5">
+                                    <td className="px-4 py-2"><span className="text-purple-400 font-bold">Raw Rock Fish</span> <span className="text-xs text-gray-500">(Lvl 80)</span></td>
+                                    <td className="px-4 py-2">T4 Caves</td>
+                                    <td className="px-4 py-2">Grilled Rock Fish <span className="text-xs text-gray-500">(Lvl 90)</span></td>
+                                    <td className="px-4 py-2 text-green-400">250 HP</td>
+                                    <td className="px-4 py-2 text-xs">Enhanced Rod + Rock Dust</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
+                {/* Section 2: Special Dishes */}
                 <section>
-                    <h3 className="text-xl text-neon-gold font-bold mb-3">Slayer / PvE Farm</h3>
-                    <div className="bg-black/40 p-4 rounded border border-gray-800 grid grid-cols-2 gap-2 text-sm">
-                        <span>• 2x Combat Potions (Atk/Str/Def)</span>
-                        <span>• 3x Prayer Potions</span>
-                        <span>• 1x Slayer Gem (Check kills)</span>
-                        <span>• High Alchemy Runes (Convert loot to gold)</span>
-                        <span>• Looting Bag (Double inventory space)</span>
-                    </div>
-                </section>
+                    <h3 className="text-xl text-neon-gold font-bold mb-4 flex items-center gap-2">
+                        🍲 Special Buff Food
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Cod Chunks */}
+                        <div className="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 className="font-bold text-white mb-1">Cod Chunks <span className="text-xs font-normal text-gray-400">(Lvl 10)</span></h4>
+                            <p className="text-xs text-green-300 mb-2">+15 Cooking Lvl • +10% XP (5m)</p>
+                            <p className="text-xs text-gray-500">Req: 5x Trout</p>
+                        </div>
 
-                <section>
-                    <h3 className="text-xl text-red-400 font-bold mb-3">PvP / Deep Wild</h3>
-                    <div className="bg-black/40 p-4 rounded border border-red-500/30 grid grid-cols-2 gap-2 text-sm">
-                        <span>• 1x Overload Potion</span>
-                        <span>• 4x Saradomin Brews (Combo eat)</span>
-                        <span>• 2x Super Restores</span>
-                        <span>• 1x Anti-Venom</span>
-                        <span>• <strong>Recall Crystal</strong> (Emergency Exit)</span>
+                        {/* Kings Lobster Delight */}
+                        <div className="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 className="font-bold text-white mb-1">Kings Lobster Delight <span className="text-xs font-normal text-gray-400">(Lvl 50)</span></h4>
+                            <p className="text-xs text-blue-300 mb-2">+15 Agility Lvl • +10% XP (5m)</p>
+                            <p className="text-xs text-gray-500">Req: 3x Lobster, 1x Kelp</p>
+                        </div>
+
+                        {/* Hearty Stew */}
+                        <div className="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 className="font-bold text-white mb-1">Hearty Stew <span className="text-xs font-normal text-gray-400">(Lvl 55)</span></h4>
+                            <p className="text-xs text-yellow-300 mb-2">+20% Mining/Fish/Wood XP (3m)</p>
+                            <p className="text-xs text-gray-500">Req: 5x Carps, 1x Kelp</p>
+                        </div>
+
+                        {/* Anchovy Soup */}
+                        <div className="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 className="font-bold text-white mb-1">Anchovy Soup <span className="text-xs font-normal text-gray-400">(Lvl 65)</span></h4>
+                            <p className="text-xs text-blue-300 mb-2">+15 Fishing Lvl • +10% XP (5m)</p>
+                            <p className="text-xs text-gray-500">Req: 5x Trout, 5x Cod</p>
+                        </div>
+
+                        {/* Rabbit Pie */}
+                        <div className="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 className="font-bold text-white mb-1">Rabbit Pie <span className="text-xs font-normal text-gray-400">(Lvl 65)</span></h4>
+                            <p className="text-xs text-gray-300 mb-2">+5 Smithing Lvl • +10% XP (5m)</p>
+                            <p className="text-xs text-gray-500">Req: 5x Trout, 1x Carp</p>
+                        </div>
+
+                        {/* Cambrian Pie */}
+                        <div className="bg-white/5 p-3 rounded border border-neon-gold/50 shadow-[0_0_10px_rgba(255,215,0,0.1)]">
+                            <h4 className="font-bold text-neon-gold mb-1">Cambrian Pie <span className="text-xs font-normal text-gray-400">(Lvl 70)</span></h4>
+                            <p className="text-xs text-white mb-2">🏆 +10% ALL XP (1.5m)</p>
+                            <p className="text-xs text-gray-500">Req: 5x Cod, 5x Meat, 5x Oak, 1x Eel</p>
+                        </div>
                     </div>
                 </section>
             </div>
