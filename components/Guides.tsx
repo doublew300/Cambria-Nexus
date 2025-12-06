@@ -81,10 +81,10 @@ export default function Guides({ onSelectGuide }: GuidesProps) {
 
             {/* Credits */}
             <div className="mt-12 pt-6 border-t border-gray-800 text-center flex flex-col gap-2 items-center justify-center">
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-400">
                     Content maintained by <span className="text-neon-gold">DoubleW300</span>
                 </p>
-                <div className="flex items-center gap-2 text-xs text-gray-600">
+                <div className="flex items-center gap-2 text-xs text-gray-400">
                     <span>Contributors:</span>
                     <a href="https://x.com/1ogic_xyz" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">1ogic</a>
                     <span>&</span>

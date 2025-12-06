@@ -242,11 +242,11 @@ function DashboardContent() {
                 </AnimatePresence>
             </main>
 
-            <footer className="mt-12 text-center text-xs text-gray-600 relative z-10 flex flex-col items-center gap-2 pb-8">
+            <footer className="mt-12 text-center text-xs text-gray-400 relative z-10 flex flex-col items-center gap-2 pb-8">
                 <p>{t('footer.built')}</p>
                 <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 mt-2">
                     <div className="flex items-center gap-2">
-                        <span className="opacity-50">Created by</span>
+                        <span className="opacity-80">Created by</span>
                         <a href="https://x.com/doublew333" target="_blank" rel="noopener noreferrer" className="text-neon-gold hover:text-white transition-colors flex items-center gap-1 font-bold bg-neon-gold/10 px-2 py-1 rounded border border-neon-gold/20 hover:border-neon-gold/50">
                             DoubleW300
                         </a>
@@ -255,17 +255,17 @@ function DashboardContent() {
 
                 {/* Contributors */}
                 <div className="flex items-center gap-3 mt-1">
-                    <span className="opacity-40">with</span>
-                    <a href="https://x.com/1ogic_xyz" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center gap-1 font-medium bg-blue-900/10 px-2 py-0.5 rounded border border-blue-500/10 hover:border-blue-500/30">
+                    <span className="opacity-70">with</span>
+                    <a href="https://x.com/1ogic_xyz" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center gap-1 font-medium bg-blue-900/10 px-2 py-0.5 rounded border border-blue-500/10 hover:border-blue-500/30">
                         1ogic
                     </a>
-                    <span className="opacity-20">+</span>
-                    <a href="https://x.com/Arual3x" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-1 font-medium bg-purple-900/10 px-2 py-0.5 rounded border border-purple-500/10 hover:border-purple-500/30">
+                    <span className="opacity-50">+</span>
+                    <a href="https://x.com/Arual3x" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-purple-400 transition-colors flex items-center gap-1 font-medium bg-purple-900/10 px-2 py-0.5 rounded border border-purple-500/10 hover:border-purple-500/30">
                         Arual3x
                     </a>
                 </div>
 
-                <div className="flex items-center gap-1 mt-2 opacity-50 hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-1 mt-2 opacity-70 hover:opacity-100 transition-opacity">
                     <a href="https://t.me/doublew300" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-400 transition-colors">
                         <span className="text-blue-400/80">Telegram:</span> doublew300
                     </a>
