@@ -54,7 +54,6 @@ export type FishInfo = {
 export type DataPackage = {
   builds: Build[];
   recipes: Recipe[];
-  fishing: FishingLoc[];
   fishCooking: FishInfo[]; // New field
   boosts: { name: string; effect: string }[];
   marks: { name: string; category: string; type: string; effect: string }[];
