@@ -42,10 +42,10 @@ export default function Guides({ onSelectGuide }: GuidesProps) {
                         <div className="relative z-10 flex flex-col grow">
                             <div className="flex items-start justify-between mb-4">
                                 <div className={`p-3 rounded-lg border transition-colors ${guide.type === 'economy' ? 'bg-green-900/20 border-green-500/30 text-green-400' :
-                                        guide.type === 'build' ? 'bg-red-900/20 border-red-500/30 text-red-400' :
-                                            guide.type === 'strategy' ? 'bg-purple-900/20 border-purple-500/30 text-purple-400' :
-                                                guide.type === 'mechanic' ? 'bg-blue-900/20 border-blue-500/30 text-blue-400' :
-                                                    'bg-cambria-purple/10 border-cambria-purple/20 text-cambria-purple'
+                                    guide.type === 'build' ? 'bg-red-900/20 border-red-500/30 text-red-400' :
+                                        guide.type === 'strategy' ? 'bg-purple-900/20 border-purple-500/30 text-purple-400' :
+                                            guide.type === 'mechanic' ? 'bg-blue-900/20 border-blue-500/30 text-blue-400' :
+                                                'bg-cambria-purple/10 border-cambria-purple/20 text-cambria-purple'
                                     }`}>
                                     {guide.type === 'economy' ? <Coins size={20} /> :
                                         guide.type === 'build' ? <Sword size={20} /> :
@@ -80,10 +80,16 @@ export default function Guides({ onSelectGuide }: GuidesProps) {
             </div>
 
             {/* Credits */}
-            <div className="mt-12 pt-6 border-t border-gray-800 text-center">
+            <div className="mt-12 pt-6 border-t border-gray-800 text-center flex flex-col gap-2 items-center justify-center">
                 <p className="text-xs text-gray-500">
-                    Content maintained by <span className="text-neon-gold">DoubleW300</span> and the Cambria community.
+                    Content maintained by <span className="text-neon-gold">DoubleW300</span>
                 </p>
+                <div className="flex items-center gap-2 text-xs text-gray-600">
+                    <span>Contributors:</span>
+                    <a href="https://x.com/1ogic_xyz" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">1ogic</a>
+                    <span>&</span>
+                    <a href="https://x.com/Arual3x" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors">Arual3x</a>
+                </div>
             </div>
         </div>
     );
