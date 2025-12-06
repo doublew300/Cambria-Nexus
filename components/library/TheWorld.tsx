@@ -1,5 +1,5 @@
 import React from 'react';
-import { Anchor, Users } from 'lucide-react';
+import { Users } from 'lucide-react';
 import { getGuideData } from '../../data/guidesData';
 import { useLanguage } from '../../context/LanguageContext';
 import { soundManager } from '../../utils/sound';
@@ -10,30 +10,8 @@ export default function TheWorld() {
 
     return (
         <div className="space-y-8">
-            {/* Fishing Zones */}
-            <section>
-                <h3 className="text-xl font-bold text-green-400 mb-4 flex items-center gap-2">
-                    <Anchor /> {language === 'ru' ? 'Рыболовные Зоны' : 'Fishing Zones'}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {data.fishing.map((loc, i) => (
-                        <div
-                            key={i}
-                            className="bg-black/60 border border-green-900/30 p-4 rounded-xl hover:border-green-500/50 transition-all cursor-default"
-                            onMouseEnter={() => soundManager.playHover()}
-                        >
-                            <div className="flex justify-between items-start mb-2">
-                                <h4 className="font-bold text-white">{loc.zone}</h4>
-                                <span className="text-xs bg-green-900/20 text-green-400 px-2 py-1 rounded border border-green-500/20">{loc.req}</span>
-                            </div>
-                            <div className="text-sm text-gray-400 mb-2">
-                                🐟 {loc.fish.join(", ")}
-                            </div>
-                            {loc.note && <div className="text-xs text-gray-500 italic">{loc.note}</div>}
-                        </div>
-                    ))}
-                </div>
-            </section>
+            {/* Fishing Zones moved to The Kitchen */}
+
 
             {/* NPC Directory */}
             <section>
