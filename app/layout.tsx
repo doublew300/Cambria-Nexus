@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   title: "CAMBRIA NEXUS",
   description: "The ultimate utility dashboard for Cambria MMO.",
   manifest: "/manifest.json",
+};
+
+export const viewport = {
   themeColor: "#1a0b2e",
 };
 

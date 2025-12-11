@@ -10,6 +10,7 @@ import GuildManager from './GuildManager';
 import XPCalculator from './XPCalculator';
 import ReferralCode from './ReferralCode';
 import TheLibrary from './TheLibrary';
+import TheOracle from './TheOracle';
 import TiltCard from './ui/TiltCard';
 import GlitchTransition from './ui/GlitchTransition';
 import { MagicBorder } from './ui/GlowBorder';
@@ -131,6 +132,7 @@ function DashboardContent() {
                             exit={{ opacity: 0, scale: 1.05 }}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000"
                         >
+
                             {/* Ledger Card */}
                             <TiltCard
                                 onClick={() => { setActiveTab('ledger'); soundManager.playClick(); }}
@@ -176,6 +178,9 @@ function DashboardContent() {
                                     </div>
                                 </MagicBorder>
                             </TiltCard>
+
+                            {/* THE ORACLE - DAY 5 HYPE (Wide) */}
+                            <TheOracle />
 
                             {/* Airdrop Card (Wide) */}
                             {/* Airdrop Card (Wide - Static) */}
